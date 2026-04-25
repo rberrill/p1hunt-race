@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P1 Hunt Race Control</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="control-panel">
+      <div class="panel-header">
+        <div class="eyebrow">Giveaway Race Control</div>
+        <h1>P1 Hunt</h1>
+        <p>Load entrants, set the race clock, and launch a broadcast-style sprint to the checkered finish.</p>
+      </div>
+
+      <section class="panel-card">
+        <div class="card-heading">
+          <h2>Entrants</h2>
+          <span id="participantCountBadge">0 racers</span>
+        </div>
+        <label class="field-label" for="participantInput">Paste one name per line</label>
+        <textarea id="participantInput" spellcheck="false" placeholder="Alex
+Jordan
+Taylor
+Morgan"></textarea>
+        <div class="panel-actions split">
+          <button id="loadParticipantsBtn" class="btn btn-primary">Load Grid</button>
+          <button id="resetParticipantsBtn" class="btn btn-secondary">Reset List</button>
+        </div>
+        <p class="helper-text">Supports 2 to 100 participants. Duplicate blank lines are ignored.</p>
+      </section>
+
+      <section class="panel-card">
+        <div class="card-heading">
+          <h2>Race Setup</h2>
+          <span id="raceStateBadge">Standby</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="durationInput">Race Duration</label>
+          <div class="duration-row">
+            <input id="durationInput" type="range" min="10" max="120" step="1" value="30">
+            <div id="durationValue" class="duration-value">30s</div>
+          </div>
+        </div>
+        <div class="race-controls">
+          <button id="startBtn" class="btn btn-primary">Start</button>
+          <button id="pauseBtn" class="btn btn-secondary" disabled>Pause</button>
+          <button id="resumeBtn" class="btn btn-secondary" disabled>Resume</button>
+          <button id="resetRaceBtn" class="btn btn-secondary">Reset Race</button>
+        </div>
+      </section>
+
+      <section class="panel-card status-card">
+        <div class="status-row">
+          <span>Clock</span>
+          <strong id="timeRemaining">30.0s</strong>
+        </div>
+        <div class="status-row">
+          <span>Leader</span>
+          <strong id="leaderName">Waiting</strong>
+        </div>
+        <div class="status-row">
+          <span>Winner</span>
+          <strong id="winnerName">TBD</strong>
+        </div>
+        <p id="messageBanner" class="message-banner">Load participants to build the starting grid.</p>
+      </section>
+    </aside>
+
+    <main class="race-stage">
+      <header class="stage-header">
+        <div class="stage-title-wrap">
+          <div class="eyebrow">Race Broadcast Feed</div>
+        </div>
+      </header>
+
+      <section class="winner-display" id="winnerDisplay">
+        <div class="winner-label">Winner</div>
+        <div class="winner-value">Awaiting finish line</div>
+      </section>
+
+      <section class="track-shell">
+        <div class="track-frame">
+          <div class="finish-line" aria-hidden="true"></div>
+          <div id="raceTrack" class="race-track"></div>
+          <div id="emptyTrackState" class="empty-track-state">
+            <div class="empty-title">No racers on the grid</div>
+            <p>Paste entrants, load the grid, and start the race when you are ready.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
